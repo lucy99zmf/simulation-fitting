@@ -146,16 +146,16 @@ def TTB_all_fit_data(subject):
 
 
 
-LR = np.arange(0, 0.3, .01)
-beta = 3
-cue = np.arange(0, 4, .1)
-error = []
-for i in LR:
-	row =[]
-	for k in cue:
-		print(i,k)
-		row.append(TTB_all_fit([i, beta, k]))
-	error.append(row)
+# LR = np.arange(0, 0.3, .01)
+# beta = 3
+# cue = np.arange(0, 4, .1)
+# error = []
+# for i in LR:
+# 	row =[]
+# 	for k in cue:
+# 		print(i,k)
+# 		row.append(TTB_all_fit([i, beta, k]))
+# 	error.append(row)
 
-ax = sns.heatmap(np.array(error), vmin = 350, vmax = 800)
-plt.show()
+# ax = sns.heatmap(np.array(error), vmin = 350, vmax = 800)
+# plt.show()

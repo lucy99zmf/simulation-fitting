@@ -49,7 +49,7 @@ def model_ideal(n):
 	ideal_errors.append(error)
 
 
-Parallel(n_jobs=2, verbose = 10)(delayed (model_ideal(n)) for n in subjects if n ==28) #28
+Parallel(n_jobs=2, verbose = 10)(delayed (model_ideal(n)) for n in subjects) #28
 
 #build dataframe 
 d = {'subject': subjects, 'alpha' : ideal_alphas, 'beta': ideal_betas, 'negLL' : ideal_errors}
@@ -64,21 +64,18 @@ df_ideal.to_hdf('ideal_fitted_parameters.h5', key = 'ideal_observer', mode = 'w'
 ###############################
 cue_alphas = []
 cue_betas = []
-cue_sensitivity = []
 cue_errors = []
-done = []
 
 def model_cue_sign(n):
-	[alpha, beta, sensitivity, error] = cue_fit_data(n)
-	done.append(n)
+	[alpha, beta, error] = cue_fit_data(n)
 	cue_alphas.append(alpha)
 	cue_betas.append(beta)
-	cue_sensitivity.append(sensitivity)
 	cue_errors.append(error)
+	print(n, 'done')
 
-Parallel(n_jobs=2, verbose = 10)(delayed (model_cue_sign(n)) for n in subjects if n > 71)
+Parallel(n_jobs=2, verbose = 10)(delayed (model_cue_sign(n)) for n in subjects)
 
-d = {'subject': subjects, 'alpha' : cue_alphas, 'beta': cue_betas, 'sensitivity': cue_sensitivity, 'negLL' : cue_errors}
+d = {'subject': subjects, 'alpha' : cue_alphas, 'beta': cue_betas, 'negLL' : cue_errors}
 df_cue = pd.DataFrame (data = d) 
 df_cue.to_hdf('cue_fitted_parameters.h5', key = 'cue_sign', mode = 'w')
 
@@ -94,11 +91,11 @@ done = []
 
 def model_TTB_used(n):
 	[alpha, beta, k, error] = TTB_used_fit_data(n)
-	done.append(n)
 	TTB_used_alphas.append(alpha)
 	TTB_used_betas.append(beta)
 	TTB_used_k.append(k)
 	TTB_used_errors.append(error)
+	print(n, 'done')
 
 Parallel(n_jobs=2, verbose = 10)(delayed (model_TTB_used(n)) for n in subjects)
 
@@ -121,6 +118,7 @@ for n in np.unique(DF['subject'].to_numpy()):
 	TTB_all_betas.append(beta)
 	TTB_all_k.append(k)
 	TTB_all_errors.append(error)
+	print(n, 'done')
 
 d = {'subject': np.unique(DF['subject'].to_numpy()), 'alpha' : TTB_all_alphas, 'beta': TTB_all_betas, 'k': TTB_all_k, 'negLL' : all_errors}
 df_TTB_all = pd.DataFrame (data = d) 

@@ -108,7 +108,7 @@ def cue_fit_data(subject):
 	error = res.fun
 	para = res.x
 
-	return (para[0], para[1], para[2], error) 
+	return (para[0], para[1], error) 
 
 
 # LR = np.arange(0, .5, .01)
