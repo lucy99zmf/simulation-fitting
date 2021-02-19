@@ -133,22 +133,22 @@ df_TTB_all.to_hdf('fitted_parameters.h5', key = 'TTB_all_learner')
 ##############################################################
 #BIC = -2 * LL + log(N) * k, k: num of parameters, N: num of examples in training set
 
-N = 800
+# N = 800
 
-BIC_ideal = []; BIC_cue = []; k = 2
-for i in range(len(df_ideal)):
-	BIC_ideal.append(2*df_ideal[df_ideal.subject==i]['negLL'] + math.log(N)*k)
-	BIC_cue.append(2*df_cue[df_cue.subject==i]['negLL'] + math.log(N)*k)
+# BIC_ideal = []; BIC_cue = []; k = 2
+# for i in range(len(df_ideal)):
+# 	BIC_ideal.append(2*df_ideal[df_ideal.subject==i]['negLL'] + math.log(N)*k)
+# 	BIC_cue.append(2*df_cue[df_cue.subject==i]['negLL'] + math.log(N)*k)
 
-BIC_ideal = np.reshape(np.array(BIC_ideal), len(np.array(BIC_ideal)))
-BIC_cue = np.reshape(np.array(BIC_cue), len(np.array(BIC_cue)))
-Ideal_min_cue = BIC_ideal - BIC_cue
+# BIC_ideal = np.reshape(np.array(BIC_ideal), len(np.array(BIC_ideal)))
+# BIC_cue = np.reshape(np.array(BIC_cue), len(np.array(BIC_cue)))
+# Ideal_min_cue = BIC_ideal - BIC_cue
 
 
-fig, ax = plt.subplots()
-subject = range(len(df_ideal))
-ax.bar(subject, Ideal_min_cue)
-plt.show()
+# fig, ax = plt.subplots()
+# subject = range(len(df_ideal))
+# ax.bar(subject, Ideal_min_cue)
+# plt.show()
 
 
 

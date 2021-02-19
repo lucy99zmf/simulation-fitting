@@ -133,7 +133,7 @@ def TTB_used_fit_data(subject):
 	##finding best fit 
 	x0 = [.05, 1, 2]
 	bnds = ((0,.2), (1e-5, 10), (0,4))
-	res = sp.optimize.dual_annealing(TTB_used_fit, bounds = bnds, maxiter = 2000) 
+	res = sp.optimize.dual_annealing(TTB_used_fit, bounds = bnds) 
 	print(res)
 	# para = res.x 
 	# print(para)

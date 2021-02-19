@@ -100,7 +100,7 @@ def cue_fit_data(subject):
 	##finding best fit 
 	x0 = [.05, 1]
 	bnds = ((0,.2), (0, 10))
-	res = sp.optimize.dual_annealing(cue_fit, bounds = bnds, maxiter = 1000) 
+	res = sp.optimize.dual_annealing(cue_fit, bounds = bnds) 
 	print(res)
 	# para = res.x 
 	# print(para)
